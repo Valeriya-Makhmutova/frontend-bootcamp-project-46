@@ -2,12 +2,13 @@
   "name": "@hexlet/code",
   "version": "1.0.0",
   "description": "learnin project 'difference calculator'",
-  "main": "index.js",
+  "main": "./src/gendiff.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "bin": {},
   "repository": {
-    "type": "git",
+    "type": "module",
     "url": "git+https://github.com/Valeriya-Makhmutova/frontend-bootcamp-project-46.git"
   },
   "author": "Valeriya Makhmutova",
@@ -19,5 +20,8 @@
   "dependencies": {
     "commander": "^11.0.0",
     "lodash": "^4.17.21"
+  },
+  "devDependencies": {
+    "eslint": "^8.45.0"
   }
 }
