@@ -26,7 +26,6 @@ function getDifference(file1, file2) {
         result += ` + ${key}: ${file2Content[key]}\n`;
       }
     });
-    console.log(`{\n${result}}`);
     return `{\n${result}}`;
 }
 export default getDifference;
