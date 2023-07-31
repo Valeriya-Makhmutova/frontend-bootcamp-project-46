@@ -1,10 +1,16 @@
-const getDifference = require('../src/get-difference');
-const file2 = process.cwd() + '/src/file2.json';
-const file1 = process.cwd() + '/src/file1.json';
-console.log("🚀 ~ file: get-difference.test.js:5 ~ file1:", file1)
+import getDifference from '../src/get-difference';
+import { test, expect } from '@jest/globals';
 
+import { fileURLToPath } from 'url';
+import { dirname } from 'path';
+import path from 'path';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+
+const getFixturePath = (filename) => path.join(__dirname, '..', '__fixtures__', filename);
 test('type of function result', () => {
-    expect(typeof getDifference(file1, file2)).toBe('string');
+    expect(typeof getDifference(getFixturePath("file1.json"), getFixturePath("file2.json"))).toBe('string');
 });
 
 const result = `{
@@ -17,5 +23,5 @@ const result = `{
 }`;
 
 test('work of function', () => {
-    expect(getDifference(file1, file2)).toBe(result);
+    expect(getDifference(getFixturePath("file1.json"), getFixturePath("file2.json"))).toBe(result);
 });

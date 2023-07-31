@@ -1,6 +1,6 @@
-const _ = require('lodash');
-const fs = require('fs');
-const path = require('path')
+import fs from 'fs';
+import path from 'path';
+import _ from 'lodash';
 
 function getDifference(file1, file2) {
     const file1Content = JSON.parse(fs.readFileSync(path.resolve(file1), 'utf8'));
@@ -29,4 +29,4 @@ function getDifference(file1, file2) {
     console.log(`{\n${result}}`);
     return `{\n${result}}`;
 }
-module.exports = getDifference;
+export default getDifference;

@@ -3,12 +3,13 @@
   "version": "1.0.0",
   "description": "learnin project 'difference calculator'",
   "main": "./src/gendiff.js",
+  "type": "module",
   "scripts": {
     "test": "jest"
   },
   "bin": {},
   "repository": {
-    "type": "module",
+    "type": "git",
     "url": "git+https://github.com/Valeriya-Makhmutova/frontend-bootcamp-project-46.git"
   },
   "author": "Valeriya Makhmutova",
