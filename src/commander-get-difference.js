@@ -1,8 +1,11 @@
 #!/usr/bin/env node
 
-const { Command } = require('commander');
-const program = new Command();
-const getDifference = require('./get-difference.js');
+
+import { program } from 'commander';
+// const { Command } = require('commander');
+// const program = new Command();
+import getDifference from './get-difference.js';
+// const getDifference = require('./get-difference.js');
 
 program
   .description('Compares two configuration files and shows a difference.')
@@ -18,8 +21,9 @@ program.command('generateDifference')
   .argument('<file2>')
   .option('--first', 'display just the first substring')
   .action((file1, file2) => {
-    getDifference(file1, file2);
+    console.log(getDifference(file1, file2));
   });
+  
 
 program.parse();
 
