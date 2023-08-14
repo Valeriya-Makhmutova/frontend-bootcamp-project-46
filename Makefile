@@ -2,7 +2,7 @@ install:
 	npm ci
 
 genDiff: 
-	node ./src/commander-get-difference.js generateDifference ./__fixtures__/file1.json ./__fixtures__/file2.json
+	clear && node ./src/commander-get-difference.js generateDifference ./__fixtures__/file1.json ./__fixtures__/file2.json
 
 lint:
 	npx eslint .
