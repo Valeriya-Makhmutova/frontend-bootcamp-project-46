@@ -4,7 +4,7 @@
   "description": "[![Actions Status](https://github.com/Valeriya-Makhmutova/frontend-bootcamp-project-46/actions/workflows/hexlet-check.yml/badge.svg)](https://github.com/Valeriya-Makhmutova/frontend-bootcamp-project-46/actions)",
   "main": "gendiff.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "npx jest"
   },
   "type": "module",
   "repository": {
@@ -27,6 +27,7 @@
   "devDependencies": {
     "@eslint/js": "^9.19.0",
     "eslint": "^9.19.0",
-    "globals": "^15.14.0"
+    "globals": "^15.14.0",
+    "jest": "^29.7.0"
   }
 }
