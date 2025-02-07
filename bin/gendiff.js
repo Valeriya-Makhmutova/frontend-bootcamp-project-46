@@ -4,7 +4,7 @@ import {Command} from 'commander';
 const program = new Command();
 import fs from 'fs';
 import path from 'path';
-import { readFileSync } from 'node:fs';
+// import { readFileSync } from 'node:fs';
 import { cwd } from 'node:process';
 import getDifference from '../src/index.js';
 
