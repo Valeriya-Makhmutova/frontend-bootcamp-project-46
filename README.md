@@ -2,3 +2,4 @@
 [![Actions Status](https://github.com/Valeriya-Makhmutova/frontend-bootcamp-project-46/actions/workflows/hexlet-check.yml/badge.svg)](https://github.com/Valeriya-Makhmutova/frontend-bootcamp-project-46/actions)
 [![Node CI](https://github.com/Valeriya-Makhmutova/frontend-bootcamp-project-46/actions/workflows/nodejs.yml/badge.svg)](https://github.com/Valeriya-Makhmutova/frontend-bootcamp-project-46/actions/workflows/nodejs.yml)
 [![Maintainability](https://api.codeclimate.com/v1/badges/1fdbf3c9cb0e995fd3e1/maintainability)](https://codeclimate.com/github/Valeriya-Makhmutova/frontend-bootcamp-project-46/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/1fdbf3c9cb0e995fd3e1/test_coverage)](https://codeclimate.com/github/Valeriya-Makhmutova/frontend-bootcamp-project-46/test_coverage)
