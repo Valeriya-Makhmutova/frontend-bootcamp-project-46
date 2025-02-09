@@ -1,19 +1,18 @@
-import getDifference from "../src";
+import getDifference from '../src/index.js';
 
 const example1 = {
-  name: "Mary",
+  name: 'Mary',
   age: 25,
-  country: "Russia",
+  country: 'Russia',
 };
 
 const example2 = {
-  name: "Mary",
+  name: 'Mary',
   age: 15,
-  gender: "female"
+  gender: 'female',
 };
 
-const result_Test1 =
-`{
+const resultTest1 = `{
   - age: 25
   + age: 15
   - country: Russia
@@ -22,5 +21,5 @@ const result_Test1 =
 }`;
 
 test('getFlatDifference_Test1', () => {
-  expect(getDifference(example1, example2)).toEqual(result_Test1);
+  expect(getDifference(example1, example2)).toEqual(resultTest1);
 });

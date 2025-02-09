@@ -10,13 +10,44 @@ const getDifference = (obj1, obj2) => {
 
   const unionKeys = _.union(keysOfObj1, keysOfObj2);
   const sortedKeys = _.sortBy(unionKeys);
-  
-  for (const key of sortedKeys) {
+
+  // for (const key of sortedKeys) {
+  //   const isOnlyInFirst = Object.hasOwn(obj1, key) && !Object.hasOwn(obj2, key);
+  //   const isOnlyInSecond = !Object.hasOwn(obj1, key) && Object.hasOwn(obj2, key);
+  //   const isBothTrue = Object.hasOwn(obj1, key)
+  //   && Object.hasOwn(obj2, key)
+  //   && obj1[key] === obj2[key];
+  //   const isBothFalse = Object.hasOwn(obj1, key)
+  //   && Object.hasOwn(obj2, key)
+  //   && obj1[key] !== obj2[key];
+
+  //   if (isOnlyInFirst) {
+  //     lines.push(`  ${minus} ${key}: ${obj1[key]}`);
+  //   }
+
+  //   if (isOnlyInSecond) {
+  //     lines.push(`  ${plus} ${key}: ${obj2[key]}`);
+  //   }
+
+  //   if (isBothTrue) {
+  //     lines.push(`  ${space} ${key}: ${obj1[key]}`);
+  //   }
+
+  //   if (isBothFalse) {
+  //     lines.push(`  ${minus} ${key}: ${obj1[key]}`);
+  //     lines.push(`  ${plus} ${key}: ${obj2[key]}`);
+  //   }
+  // }
+
+  sortedKeys.forEach((key) => {
     const isOnlyInFirst = Object.hasOwn(obj1, key) && !Object.hasOwn(obj2, key);
     const isOnlyInSecond = !Object.hasOwn(obj1, key) && Object.hasOwn(obj2, key);
-    const isBothTrue = Object.hasOwn(obj1, key) && Object.hasOwn(obj2, key) && obj1[key] === obj2[key];
-    const isBothFalse = Object.hasOwn(obj1, key) && Object.hasOwn(obj2, key) && obj1[key] !== obj2[key];
-
+    const isBothTrue = Object.hasOwn(obj1, key)
+    && Object.hasOwn(obj2, key)
+    && obj1[key] === obj2[key];
+    const isBothFalse = Object.hasOwn(obj1, key)
+    && Object.hasOwn(obj2, key)
+    && obj1[key] !== obj2[key];
 
     if (isOnlyInFirst) {
       lines.push(`  ${minus} ${key}: ${obj1[key]}`);
@@ -25,7 +56,7 @@ const getDifference = (obj1, obj2) => {
     if (isOnlyInSecond) {
       lines.push(`  ${plus} ${key}: ${obj2[key]}`);
     }
-    
+
     if (isBothTrue) {
       lines.push(`  ${space} ${key}: ${obj1[key]}`);
     }
@@ -34,10 +65,10 @@ const getDifference = (obj1, obj2) => {
       lines.push(`  ${minus} ${key}: ${obj1[key]}`);
       lines.push(`  ${plus} ${key}: ${obj2[key]}`);
     }
-  }
+  });
 
-  const result = ['{',...lines,'}'].join('\n');
-  
+  const result = ['{', ...lines, '}'].join('\n');
+
   return result;
 };
 
