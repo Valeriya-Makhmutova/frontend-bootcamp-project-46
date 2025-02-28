@@ -6,7 +6,7 @@ import fs from 'fs';
 
 import path from 'path';
 
-import { formatDiff } from './formatter.js'
+import { stylish } from './stylish.js'
 
 const getFixturePath = (fileName) => path.resolve(process.cwd(), `./${fileName}`);
 const readFile = (filename) => fs.readFileSync(getFixturePath(filename), 'utf-8');
@@ -48,11 +48,15 @@ export const giveDifferences = (obj1, obj2) => {
 };
 
 
-export const prepareDataForGetDiff = (path1, path2) => {
+export const prepareDataForGetDiff = (path1, path2, formatter = 'stylish') => {
   const data1 = parse(readFile(path1), getFormat(path1));
   const data2 = parse(readFile(path2), getFormat(path2));
 
   const dataOfDifferences = giveDifferences(data1, data2);
   
-  return formatDiff(dataOfDifferences);
+  if (formatter === 'stylish') {
+    return stylish(dataOfDifferences);
+  } else {
+    return `Такой формат не поддерживается или не существует.`
+  }
 };

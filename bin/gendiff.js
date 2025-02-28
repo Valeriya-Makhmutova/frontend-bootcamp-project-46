@@ -11,9 +11,9 @@ program
   .version('0.0.1')
   .argument('filepath1', 'path to the first file to compare')
   .argument('filepath2', 'path to the second file to compare')
-  .option('-f, --format [type]', 'output format')
+  .option('-f, --format [type]', 'output format', 'stylish')
   .action((filepath1, filepath2) => {
-    console.log(prepareDataForGetDiff(filepath1, filepath2));
+    console.log(prepareDataForGetDiff(filepath1, filepath2, program.opts().format));
   })
   .parse(process.argv);
 

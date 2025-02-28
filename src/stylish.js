@@ -37,7 +37,7 @@ const stringify = (value, depth) => {
   ].join('\n');
 };
 
-export const formatDiff = (data) => {
+export const stylish = (data) => {
   const iter = (element, depth) => {
     const result = element.map((item) => {
       const indentSize = depth * forKey;
