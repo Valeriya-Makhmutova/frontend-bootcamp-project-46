@@ -4,9 +4,9 @@ import parse from '../src/parser.js';
 import { getFormat } from './utils.js';
 import fs from 'fs';
 
-import path from 'path';
+import path, { format } from 'path';
 
-import { stylish } from './stylish.js'
+import { activateFormat } from './formatters/index.js';
 
 const getFixturePath = (fileName) => path.resolve(process.cwd(), `./${fileName}`);
 const readFile = (filename) => fs.readFileSync(getFixturePath(filename), 'utf-8');
@@ -54,9 +54,5 @@ export const prepareDataForGetDiff = (path1, path2, formatter = 'stylish') => {
 
   const dataOfDifferences = giveDifferences(data1, data2);
   
-  if (formatter === 'stylish') {
-    return stylish(dataOfDifferences);
-  } else {
-    return `Такой формат не поддерживается или не существует.`
-  }
+  return activateFormat(dataOfDifferences, formatter);
 };
