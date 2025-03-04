@@ -19,16 +19,8 @@ const stringify = (value) => {
 export const plain = (object) => {
   
   const iter = (data, string) => {
-    // console.log('data', data)
-    // console.log('string', string)
-
     const result = data.flatMap((item) => {
-      // console.log('item', item);
       const { keyName, flag, value, newValue } = item;
-
-        // console.log('keyName', keyName);
-      // console.log('flag', flag);
-      // console.log('value', value);
       let newString;
       //это поможет сделать составной ключ:
       if (string === '') {
@@ -53,16 +45,7 @@ export const plain = (object) => {
         return [];
       }
     });
-    // console.log('result', result)
     return [...result].join('\n');
   };
   return iter(object, '');
 };
-
-// const obj = [{
-//   keyName: 'group1',
-//   flag: 'bothNested',
-//   value: [ [{a: 1}], [{a: 1}], [{a: 1}] ]
-// }];
-
-// plain(obj);

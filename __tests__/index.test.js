@@ -56,3 +56,19 @@ test('compare yamls plain', () => {
   const expected = readFile('result-plain.txt');
   expect(recieved).toEqual(expected);
 });
+
+//тесты на формат - json с вложенными данными 
+
+test('compare jsons files in jsons format', () => {
+  const recieved = prepareDataForGetDiff('__fixtures__/file1.json',
+     '__fixtures__/file2.json', 'json');
+  const expected = readFile('result-json.json');
+  expect(recieved).toEqual(expected);
+});
+
+test('compare jsons yamls files in jsons format', () => {
+  const recieved = prepareDataForGetDiff('__fixtures__/file1.yaml',
+     '__fixtures__/file2.yaml', 'json');
+  const expected = readFile('result-json.json');
+  expect(recieved).toEqual(expected);
+});

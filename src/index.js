@@ -53,6 +53,7 @@ export const prepareDataForGetDiff = (path1, path2, formatter = 'stylish') => {
   const data2 = parse(readFile(path2), getFormat(path2));
 
   const dataOfDifferences = giveDifferences(data1, data2);
+  // console.log(dataOfDifferences);
   
   return activateFormat(dataOfDifferences, formatter);
 };
