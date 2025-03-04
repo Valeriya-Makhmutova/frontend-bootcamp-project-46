@@ -1,28 +1,32 @@
 import _ from 'lodash';
 
-//onlyIn1 - такой ключ есть только в первом файле
-//onlyIn2 - такой ключ есть только во втором файле
-//bothEqual - одинаковый ключ и значения равны (не объект)
-//bothDiff - ключ одинаковый, но значения разные
-//bothNested - ключ одинаковый, значения оба объекты
+// onlyIn1 - такой ключ есть только в первом файле
+// onlyIn2 - такой ключ есть только во втором файле
+// bothEqual - одинаковый ключ и значения равны (не объект)
+// bothDiff - ключ одинаковый, но значения разные
+// bothNested - ключ одинаковый, значения оба объекты
 
 const stringify = (value) => {
   if (_.isObject(value)) {
-    return `[complex value]`;
+    return '[complex value]';
   }
   if (typeof value === 'boolean' || value === null) {
-    return `${value}`
+    return `${value}`;
   }
   return `'${value}'`;
 };
 
-export const plain = (object) => {
-  
+const plain = (object) => {
   const iter = (data, string) => {
     const result = data.flatMap((item) => {
-      const { keyName, flag, value, newValue } = item;
+      const {
+        keyName,
+        flag,
+        value,
+        newValue,
+      } = item;
       let newString;
-      //это поможет сделать составной ключ:
+      // это поможет сделать составной ключ:
       if (string === '') {
         newString = `${keyName}`;
       } else {
@@ -44,8 +48,11 @@ export const plain = (object) => {
       if (flag === 'bothEqual') {
         return [];
       }
+      return 'The flag does not exist';
     });
     return [...result].join('\n');
   };
   return iter(object, '');
 };
+
+export default plain;
