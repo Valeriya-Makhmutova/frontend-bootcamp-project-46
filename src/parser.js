@@ -7,7 +7,7 @@ const parse = (data, fileFormat) => {
   if (fileFormat === 'yaml' || fileFormat === 'yml') {
     return yaml.load(data);
   }
-  return `${fileFormat} is not supported. Please use only files of the format 'json' or 'yaml' ('yml)`;
+  return `'${fileFormat}' is not supported. Please use only files of the format 'json' or 'yaml' ('yml')`;
 };
 
 export default parse;
