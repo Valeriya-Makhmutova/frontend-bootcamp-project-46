@@ -1,8 +1,8 @@
 import _ from 'lodash';
 import fs from 'fs';
-import path, { dirname } from 'path';
-// import { dirname } from 'path';
-import { fileURLToPath } from 'url';
+// import path, { dirname } from 'path';
+import path from 'path';
+// import { fileURLToPath } from 'url';
 
 import parse from './parser.js';
 
@@ -10,11 +10,15 @@ import getFormat from './utils.js';
 
 import activateFormat from './formatters/index.js';
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
-
-const getFixturePath = (filename) => path.join(__dirname, '..', filename);
+// const __filename = fileURLToPath(import.meta.url);
+// console.log("🚀 ~ import.meta.url:", import.meta.url)
+// console.log("🚀 ~ __filename:", __filename)
+// const __dirname = dirname(__filename);
+// console.log("🚀 ~ __dirname:", __dirname)
+// console.log("process.cwd()", process.cwd())
+const getFixturePath = (fileName) => path.resolve(process.cwd(), fileName);
 const readFile = (filename) => fs.readFileSync(getFixturePath(filename), 'utf-8');
+// console.log("🚀 ~ readFile ~ getFixturePath(filename):", getFixturePath(filename))
 
 const giveDifferences = (obj1, obj2) => {
   const keysOfObj1 = Object.keys(obj1);
