@@ -10,7 +10,8 @@ const stringify = (value) => {
   if (_.isObject(value)) {
     return '[complex value]';
   }
-  if (typeof value === 'boolean' || value === null) {
+  if (typeof value === 'boolean'
+    || typeof value === 'number' || value === null) {
     return `${value}`;
   }
   return `'${value}'`;
