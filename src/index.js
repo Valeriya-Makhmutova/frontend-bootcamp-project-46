@@ -1,6 +1,8 @@
 import _ from 'lodash';
 import fs from 'fs';
-import path from 'path';
+import path, { dirname } from 'path';
+// import { dirname } from 'path';
+import { fileURLToPath } from 'url';
 
 import parse from './parser.js';
 
@@ -8,10 +10,13 @@ import getFormat from './utils.js';
 
 import activateFormat from './formatters/index.js';
 
-const getFixturePath = (fileName) => path.resolve(process.cwd(), `./${fileName}`);
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+
+const getFixturePath = (filename) => path.join(__dirname, '..', filename);
 const readFile = (filename) => fs.readFileSync(getFixturePath(filename), 'utf-8');
 
-export const giveDifferences = (obj1, obj2) => {
+const giveDifferences = (obj1, obj2) => {
   const keysOfObj1 = Object.keys(obj1);
   const keysOfObj2 = Object.keys(obj2);
 
@@ -65,7 +70,7 @@ export const giveDifferences = (obj1, obj2) => {
   return resultCollection;
 };
 
-export const prepareDataForGetDiff = (path1, path2, formatter = 'stylish') => {
+const prepareDataForGetDiff = (path1, path2, formatter = 'stylish') => {
   const data1 = parse(readFile(path1), getFormat(path1));
   const data2 = parse(readFile(path2), getFormat(path2));
 
@@ -74,3 +79,5 @@ export const prepareDataForGetDiff = (path1, path2, formatter = 'stylish') => {
 
   return activateFormat(dataOfDifferences, formatter);
 };
+
+export default prepareDataForGetDiff;
