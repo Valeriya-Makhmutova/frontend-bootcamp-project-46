@@ -15,7 +15,6 @@ program
   .action((filepath1, filepath2) => {
     console.log(prepareDataForGetDiff(filepath1, filepath2, program.opts().format));
   });
-  // .parse(process.argv);
 program.parse();
 
 // program.version('0.0.1', '-V, --version', 'output the current version');

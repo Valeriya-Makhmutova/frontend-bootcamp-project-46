@@ -26,13 +26,9 @@ const plain = (object) => {
         value,
         newValue,
       } = item;
-      let newString;
+
       // это поможет сделать составной ключ:
-      if (string === '') {
-        newString = `${keyName}`;
-      } else {
-        newString = `${string}.${keyName}`;
-      }
+      const newString = string === '' ? `${keyName}` : `${string}.${keyName}`;
 
       if (flag === 'onlyIn1') {
         return `Property '${newString}' was removed`;
