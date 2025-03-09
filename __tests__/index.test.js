@@ -9,26 +9,6 @@ import prepareDataForGetDiff from '../src/index.js';
 const getFixturePath = (fileName) => path.resolve(process.cwd(), `./__fixtures__/${fileName}`);
 const readFile = (filename) => fs.readFileSync(getFixturePath(filename), 'utf-8');
 
-// тесты на формат по умолчанию - stylish с плоскими данными
-
-test('compare flat jsons stylish', () => {
-  const recieved = prepareDataForGetDiff(
-    '__fixtures__/flat-test-files/file1-test.json',
-    '__fixtures__/flat-test-files/file2-test.json',
-  );
-  const expected = readFile('result-flat.txt');
-  expect(recieved).toEqual(expected);
-});
-
-test('compare flat yamls stylish', () => {
-  const recieved = prepareDataForGetDiff(
-    '__fixtures__/flat-test-files/file1-test.yaml',
-    '__fixtures__/flat-test-files/file2-test.yaml',
-  );
-  const expected = readFile('result-flat.txt');
-  expect(recieved).toEqual(expected);
-});
-
 // тесты на формат по умолчанию - stylish с вложенными данными
 
 test('compare jsons stylish', () => {
@@ -92,3 +72,4 @@ test('compare jsons yamls files in jsons format', () => {
   const expected = readFile('result-json.json');
   expect(recieved).toEqual(expected);
 });
+

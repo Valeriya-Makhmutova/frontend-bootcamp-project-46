@@ -1,7 +1,7 @@
 {
   "name": "@hexlet/code",
   "version": "1.0.0",
-  "description": "[![Actions Status](https://github.com/Valeriya-Makhmutova/frontend-bootcamp-project-46/actions/workflows/hexlet-check.yml/badge.svg)](https://github.com/Valeriya-Makhmutova/frontend-bootcamp-project-46/actions)",
+  "description": "The difference calculator helps to find the difference between two files",
   "main": "src/index.js",
   "scripts": {
     "test": "npx jest"

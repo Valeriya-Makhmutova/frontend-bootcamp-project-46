@@ -1,8 +1,6 @@
 import _ from 'lodash';
 import fs from 'fs';
-// import path, { dirname } from 'path';
 import path from 'path';
-// import { fileURLToPath } from 'url';
 
 import parse from './parser.js';
 
@@ -10,15 +8,8 @@ import getFormat from './utils.js';
 
 import activateFormat from './formatters/index.js';
 
-// const __filename = fileURLToPath(import.meta.url);
-// console.log("🚀 ~ import.meta.url:", import.meta.url)
-// console.log("🚀 ~ __filename:", __filename)
-// const __dirname = dirname(__filename);
-// console.log("🚀 ~ __dirname:", __dirname)
-// console.log("process.cwd()", process.cwd())
 const getFixturePath = (fileName) => path.resolve(process.cwd(), fileName);
 const readFile = (filename) => fs.readFileSync(getFixturePath(filename), 'utf-8');
-// console.log("🚀 ~ readFile ~ getFixturePath(filename):", getFixturePath(filename))
 
 const giveDifferences = (obj1, obj2) => {
   const keysOfObj1 = Object.keys(obj1);
@@ -70,7 +61,6 @@ const giveDifferences = (obj1, obj2) => {
     }
     return 'Something is going wrong';
   });
-  // console.log('resultCollection', resultCollection);
   return resultCollection;
 };
 
@@ -82,7 +72,6 @@ const prepareDataForGetDiff = (path1, path2, formatter = 'stylish') => {
   const data2 = parse(readFile(path2), getFormat(path2));
 
   const dataOfDifferences = giveDifferences(data1, data2);
-  // console.log(dataOfDifferences);
 
   return activateFormat(dataOfDifferences, formatter);
 };

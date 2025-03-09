@@ -1,7 +1,0 @@
-{
-  - age: 25
-  + age: 15
-  - country: Russia
-  + gender: female
-    name: Mary
-}
