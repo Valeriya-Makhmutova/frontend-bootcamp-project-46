@@ -16,7 +16,10 @@ const flagsAndSymbols = {
   onlyIn2: '+',
   bothEqual: ' ',
   bothNested: ' ',
+  bothDiff: ['-', '+'],
 };
+const first = 1;
+const second = 2;
 
 const stringify = (data, depth) => {
   if (!_.isObject(data)) {
@@ -37,30 +40,48 @@ const stringify = (data, depth) => {
   ].join('\n');
 };
 
+const getKeyString = (keyIndent, flag, keyName, numberOfElem) => {
+  if (numberOfElem === first) {
+    return `${keyIndent}${flagsAndSymbols[flag][0]} ${keyName}:`;
+  }
+  if (numberOfElem === second) {
+    return `${keyIndent}${flagsAndSymbols[flag][1]} ${keyName}:`;
+  }
+  return `${keyIndent}${flagsAndSymbols[flag]} ${keyName}:`;
+};
+
 const stylish = (data) => {
   const iter = (element, depth) => {
     const result = element.map((item) => {
       const indentSize = depth * forKey;
       const keyIndent = indent.repeat(indentSize - forPrefix);
       const indentBeforeBracket = indent.repeat(indentSize);
-      if (item.flag === 'onlyIn1' || item.flag === 'onlyIn2' || item.flag === 'bothEqual') {
-        return `${keyIndent}${flagsAndSymbols[item.flag]} ${item.keyName}: ${stringify(item.value, depth + 1)}`;
+      // const keyString = `${keyIndent}${flagsAndSymbols[item.flag]} ${item.keyName}:`;
+
+      const {
+        keyName,
+        flag,
+        value,
+        newValue,
+      } = item;
+
+      if (flag === 'onlyIn1' || flag === 'onlyIn2' || flag === 'bothEqual') {
+        return `${getKeyString(keyIndent, flag, keyName)} ${stringify(value, depth + 1)}`;
       }
 
       if (item.flag === 'bothDiff') {
-        return `${keyIndent}${flagsAndSymbols.onlyIn1} ${item.keyName}: ${stringify(item.value, depth + 1)}\n${keyIndent}${flagsAndSymbols.onlyIn2} ${item.keyName}: ${stringify(item.newValue, depth + 1)}`;
+        return `${getKeyString(keyIndent, flag, keyName, 1)} ${stringify(value, depth + 1)}\n${getKeyString(keyIndent, flag, keyName, 2)} ${stringify(newValue, depth + 1)}`;
       }
 
       if (item.flag === 'bothNested') {
-        return `${keyIndent}${flagsAndSymbols[item.flag]} ${item.keyName}: ${openBracket}\n${iter(item.value, depth + 1).join('\n')}\n${indentBeforeBracket}${closeBracket}`;
+        return `${getKeyString(keyIndent, flag, keyName)} ${openBracket}\n${iter(value, depth + 1).join('\n')}\n${indentBeforeBracket}${closeBracket}`;
       }
-      return 'The flag does not exist';
+      // return 'The flag does not exist';
+      throw new Error('The flag doesn\'t exist');
     });
     return result;
   };
-  const resultCollection = [`${openBracket}`, ...iter(data, 1), `${closeBracket}`];
-  const resultString = resultCollection.join('\n');
-  return resultString;
+  return [`${openBracket}`, ...iter(data, 1), `${closeBracket}`].join('\n');
 };
 
 export default stylish;

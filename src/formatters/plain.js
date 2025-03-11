@@ -10,11 +10,10 @@ const stringify = (value) => {
   if (_.isObject(value)) {
     return '[complex value]';
   }
-  if (typeof value === 'boolean'
-    || typeof value === 'number' || value === null) {
-    return `${value}`;
+  if (typeof value === 'string') {
+    return `'${value}'`;
   }
-  return `'${value}'`;
+  return `${value}`;
 };
 
 const plain = (object) => {
@@ -30,24 +29,22 @@ const plain = (object) => {
       // это поможет сделать составной ключ:
       const newString = string === '' ? `${keyName}` : `${string}.${keyName}`;
 
-      if (flag === 'onlyIn1') {
-        return `Property '${newString}' was removed`;
+      switch (flag) {
+        case 'onlyIn1':
+          return `Property '${newString}' was removed`;
+        case 'onlyIn2':
+          return `Property '${newString}' was added with value: ${stringify(value)}`;
+        case 'bothDiff':
+          return `Property '${newString}' was updated. From ${stringify(value)} to ${stringify(newValue)}`;
+        case 'bothNested':
+          return iter(value, newString);
+        case 'bothEqual':
+          return [];
+        default:
+          return 'The flag doesn\'t exist';
       }
-      if (flag === 'onlyIn2') {
-        return `Property '${newString}' was added with value: ${stringify(value)}`;
-      }
-      if (flag === 'bothDiff') {
-        return `Property '${newString}' was updated. From ${stringify(value)} to ${stringify(newValue)}`;
-      }
-      if (flag === 'bothNested') {
-        return iter(value, newString);
-      }
-      if (flag === 'bothEqual') {
-        return [];
-      }
-      return 'The flag does not exist';
     });
-    return [...result].join('\n');
+    return result.join('\n');
   };
   return iter(object, '');
 };

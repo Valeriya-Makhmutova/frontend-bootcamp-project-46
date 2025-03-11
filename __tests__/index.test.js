@@ -9,67 +9,24 @@ import prepareDataForGetDiff from '../src/index.js';
 const getFixturePath = (fileName) => path.resolve(process.cwd(), `./__fixtures__/${fileName}`);
 const readFile = (filename) => fs.readFileSync(getFixturePath(filename), 'utf-8');
 
-// тесты на формат по умолчанию - stylish с вложенными данными
+const jsonFile1 = '__fixtures__/file1.json';
+const jsonFile2 = '__fixtures__/file2.json';
+const yamlFile1 = '__fixtures__/file1.yml';
+const yamlFile2 = '__fixtures__/file2.yml';
+const resultStylish = 'result-stylish.txt';
+const resultPlain = 'result-plain.txt';
+const resultJSON = 'result-json.json';
+const stylish = 'stylish';
+const plain = 'plain';
+const json = 'json';
 
-test('compare jsons stylish', () => {
-  const recieved = prepareDataForGetDiff(
-    '__fixtures__/file1.json',
-    '__fixtures__/file2.json',
-  );
-  const expected = readFile('result-stylish.txt');
-  expect(recieved).toEqual(expected);
+test.each([
+  [jsonFile1, jsonFile2, stylish, resultStylish],
+  [yamlFile1, yamlFile2, stylish, resultStylish],
+  [jsonFile1, jsonFile2, plain, resultPlain],
+  [yamlFile1, yamlFile2, plain, resultPlain],
+  [jsonFile1, jsonFile2, json, resultJSON],
+  [yamlFile1, yamlFile2, json, resultJSON],
+])('gendiff(%s, %s, %s)', (a, b, c, expected) => {
+  expect(prepareDataForGetDiff(a, b, c)).toBe(readFile(expected));
 });
-
-test('compare yamls stylish', () => {
-  const recieved = prepareDataForGetDiff(
-    '__fixtures__/file1.yml',
-    '__fixtures__/file2.yml',
-  );
-  const expected = readFile('result-stylish.txt');
-  expect(recieved).toEqual(expected);
-});
-
-// тесты на формат - plain с вложенными данными
-
-test('compare jsons plain', () => {
-  const recieved = prepareDataForGetDiff(
-    '__fixtures__/file1.json',
-    '__fixtures__/file2.json',
-    'plain',
-  );
-  const expected = readFile('result-plain.txt');
-  expect(recieved).toEqual(expected);
-});
-
-test('compare yamls plain', () => {
-  const recieved = prepareDataForGetDiff(
-    '__fixtures__/file1.yml',
-    '__fixtures__/file2.yml',
-    'plain',
-  );
-  const expected = readFile('result-plain.txt');
-  expect(recieved).toEqual(expected);
-});
-
-// тесты на формат - json с вложенными данными
-
-test('compare jsons files in jsons format', () => {
-  const recieved = prepareDataForGetDiff(
-    '__fixtures__/file1.json',
-    '__fixtures__/file2.json',
-    'json',
-  );
-  const expected = readFile('result-json.json');
-  expect(recieved).toEqual(expected);
-});
-
-test('compare jsons yamls files in jsons format', () => {
-  const recieved = prepareDataForGetDiff(
-    '__fixtures__/file1.yml',
-    '__fixtures__/file2.yml',
-    'json',
-  );
-  const expected = readFile('result-json.json');
-  expect(recieved).toEqual(expected);
-});
-

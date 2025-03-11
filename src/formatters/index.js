@@ -11,9 +11,12 @@ const activateFormat = (data, format) => {
   if (format === 'json') {
     return JSON.stringify(data);
   }
-  return `Format '${format}' is not supported.
+  throw new Error(`Format '${format}' is not supported.
 You can choose only formats 'stylish', 'plain', or 'json'.
-Or you can leave it empty - format will be 'stylish'.`;
+Or you can leave it empty - format will be 'stylish'.`);
+//   return `Format '${format}' is not supported.
+// You can choose only formats 'stylish', 'plain', or 'json'.
+// Or you can leave it empty - format will be 'stylish'.`;
 };
 
 export default activateFormat;
