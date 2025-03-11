@@ -20,13 +20,8 @@ const plain = (object) => {
   const iter = (data, string) => {
     const result = data.flatMap((item) => {
       const {
-        keyName,
-        flag,
-        value,
-        newValue,
+        keyName, flag, value, newValue,
       } = item;
-
-      // это поможет сделать составной ключ:
       const newString = string === '' ? `${keyName}` : `${string}.${keyName}`;
 
       switch (flag) {

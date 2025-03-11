@@ -17,44 +17,21 @@ const giveDifferences = (obj1, obj2) => {
 
   const resultCollection = _.sortBy(_.union(keysOfObj1, keysOfObj2)).map((key) => {
     if (Object.hasOwn(obj1, key) && !Object.hasOwn(obj2, key)) {
-      return {
-        keyName: key,
-        flag: 'onlyIn1',
-        value: obj1[key],
-      };
+      return { keyName: key, flag: 'onlyIn1', value: obj1[key] };
     }
-
     if (Object.hasOwn(obj2, key) && !Object.hasOwn(obj1, key)) {
-      return {
-        keyName: key,
-        flag: 'onlyIn2',
-        value: obj2[key],
-      };
+      return { keyName: key, flag: 'onlyIn2', value: obj2[key] };
     }
-
     if (_.isPlainObject(obj1[key]) && _.isPlainObject(obj2[key])) {
-      return {
-        keyName: key,
-        flag: 'bothNested',
-        value: giveDifferences(obj1[key], obj2[key]),
-      };
+      return { keyName: key, flag: 'bothNested', value: giveDifferences(obj1[key], obj2[key]) };
     }
-
     if (obj1[key] !== obj2[key]) {
       return {
-        keyName: key,
-        flag: 'bothDiff',
-        value: obj1[key],
-        newValue: obj2[key],
+        keyName: key, flag: 'bothDiff', value: obj1[key], newValue: obj2[key],
       };
     }
-
     if (obj1[key] === obj2[key]) {
-      return {
-        keyName: key,
-        flag: 'bothEqual',
-        value: obj1[key],
-      };
+      return { keyName: key, flag: 'bothEqual', value: obj1[key] };
     }
     throw new Error('Something is going wrong');
   });
