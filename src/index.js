@@ -63,7 +63,6 @@ const giveDifferences = (obj1, obj2) => {
 
 const prepareDataForGetDiff = (path1, path2, formatter = 'stylish') => {
   if (!path1.includes('.') || !path2.includes('.')) {
-    // return 'Error in file names';
     throw new Error('Error in file names');
   }
   const data1 = parse(readFile(path1), getFormat(path1));

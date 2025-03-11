@@ -16,5 +16,3 @@ program
     console.log(prepareDataForGetDiff(filepath1, filepath2, program.opts().format));
   });
 program.parse();
-
-// program.version('0.0.1', '-V, --version', 'output the current version');

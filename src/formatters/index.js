@@ -14,9 +14,6 @@ const activateFormat = (data, format) => {
   throw new Error(`Format '${format}' is not supported.
 You can choose only formats 'stylish', 'plain', or 'json'.
 Or you can leave it empty - format will be 'stylish'.`);
-//   return `Format '${format}' is not supported.
-// You can choose only formats 'stylish', 'plain', or 'json'.
-// Or you can leave it empty - format will be 'stylish'.`;
 };
 
 export default activateFormat;

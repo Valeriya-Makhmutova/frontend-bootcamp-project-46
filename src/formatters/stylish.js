@@ -56,7 +56,6 @@ const stylish = (data) => {
       const indentSize = depth * forKey;
       const keyIndent = indent.repeat(indentSize - forPrefix);
       const indentBeforeBracket = indent.repeat(indentSize);
-      // const keyString = `${keyIndent}${flagsAndSymbols[item.flag]} ${item.keyName}:`;
 
       const {
         keyName,
@@ -76,7 +75,6 @@ const stylish = (data) => {
       if (item.flag === 'bothNested') {
         return `${getKeyString(keyIndent, flag, keyName)} ${openBracket}\n${iter(value, depth + 1).join('\n')}\n${indentBeforeBracket}${closeBracket}`;
       }
-      // return 'The flag does not exist';
       throw new Error('The flag doesn\'t exist');
     });
     return result;
